@@ -35,7 +35,7 @@
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
 
-#include "fp_klte.h"
+#include "fp_hlte.h"
 #include "fingerprint_tz.h"
 #include "hash.h"
 
@@ -740,7 +740,7 @@ fingerprint_module_t HAL_MODULE_INFO_SYM = {
         .module_api_version = FINGERPRINT_MODULE_API_VERSION_2_1,
         .hal_api_version    = HARDWARE_HAL_API_VERSION,
         .id                 = FINGERPRINT_HARDWARE_MODULE_ID,
-        .name               = "KLTE Fingerprint HAL",
+        .name               = "hlte Fingerprint HAL",
         .author             = "ljzyal(ljzyal@gmail.com)",
         .methods            = &fingerprint_module_methods,
     },
