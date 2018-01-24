@@ -176,7 +176,7 @@
 # NFC_NXP
 /dev/pn547                0660   nfc        nfc
 
-# NFC bcm2079x (hltespr, hltedv)
+# NFC bcm2079x (hlte)
 /dev/bcm2079x             0660   nfc        nfc
 
 # NFC_SLSI
