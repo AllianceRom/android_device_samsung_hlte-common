@@ -21,7 +21,6 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
@@ -47,14 +46,6 @@ PRODUCT_PACKAGES += \
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-# Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
-
-# FlipFlap
-PRODUCT_PACKAGES += \
-    FlipFlap
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
