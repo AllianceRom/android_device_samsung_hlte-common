@@ -287,4 +287,8 @@
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
     <integer name="config_deviceHardwareKeys">71</integer>
+      
+    <!-- Whether device has button lights support -->
+    <bool name="config_button_brightness_support">true</bool>
+
 </resources>
