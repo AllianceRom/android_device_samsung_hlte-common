@@ -20,6 +20,8 @@ COMMON_PATH := device/samsung/hlte-common
 
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
+ALLOW_MISSING_DEPENDENCIES=true
+
 # ADB Legacy Interface
 TARGET_USES_LEGACY_ADB_INTERFACE := true
 
