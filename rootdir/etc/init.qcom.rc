@@ -1,5 +1,6 @@
 # Copyright (c) 2009-2012, Code Aurora Forum. All rights reserved.
 #               2017-2018, The LineageOS Project. All rights reserved.
+#               2017-2018, Ground Zero Roms. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -244,6 +245,11 @@ on post-fs-data
     # Will be recreated at end of boot
     rm /data/data/com.android.providers.telephony/databases
     rm /data/data/com.android.providers.telephony/shared_prefs
+
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
 
     setprop vold.post_fs_data_done 1
 
@@ -995,6 +1001,13 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
 
+    chown root system /sys/devices/system/cpu/cpu1/online
+    chown root system /sys/devices/system/cpu/cpu2/online
+    chown root system /sys/devices/system/cpu/cpu3/online
+    chmod 664 /sys/devices/system/cpu/cpu1/online
+    chmod 664 /sys/devices/system/cpu/cpu2/online
+    chmod 664 /sys/devices/system/cpu/cpu3/online
+
     write /sys/module/msm_thermal/core_control/enabled 1
 
     # Configure the cpu-boost module
@@ -1011,9 +1024,21 @@ on property:sys.boot_completed=1
     symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
     symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
 
+
+service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
+    class late_start
+    user root
+    group root
+    oneshot
+    disabled
 service charger /charger
     class charger
     seclabel u:r:charger:s0
+
+service sec-sh /system/bin/sh /system/etc/init.sec.boot.sh
+    class main
+    user root
+    oneshot
 
 on property:persist.sys.ssr.restart_level=1
     write /sys/module/subsystem_restart/parameters/restart_level 1
